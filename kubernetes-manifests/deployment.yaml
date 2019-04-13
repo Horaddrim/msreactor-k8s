@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-back-end-app
+  labels:
+    name: dep-back-end-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: back-end-app
+  template:
+    metadata:
+      labels:
+        name: back-end-app
+    spec:
+      containers:
+        - name: back-end-app
+          image: horaddrim/msreactor-app
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+              name: app-port
